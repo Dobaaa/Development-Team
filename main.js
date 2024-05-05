@@ -110,7 +110,7 @@ tl.to("#second-element", {
   right: "10%",
 });
 tl.to("#third-element", {
-  top: "70%",
+  top: "60%",
   rotate: "130deg",
   right: "30%",
 });
@@ -132,4 +132,57 @@ window.addEventListener("mousemove", (e) => {
 
 Span.addEventListener("click", () => {
   OverLay.classList.toggle("is-open");
+});
+
+//-- second section ------------------------
+
+var tll = gsap.timeline();
+
+tll
+  .to(".loader-txt-contain", {
+    marginTop: "0vh",
+    duration: 0.8,
+  })
+  .to(".loader-txt-contain", {
+    marginTop: "-15vh",
+    duration: 0.8,
+  })
+  .to(".loader-txt-contain", {
+    marginTop: "-29vh",
+    duration: 0.8,
+  })
+  .to(".loader-txt-contain", {
+    marginTop: "-45vh",
+    duration: 0.8,
+  })
+  .to(".loader-txt-contain", {
+    marginTop: "-58vh",
+    duration: 0.8,
+  })
+  .to(".loader-txt-contain", {
+    marginTop: "-72vh",
+    duration: 0.8,
+  })
+  .to(".loader-txt-contain", {
+    marginTop: "-87vh",
+    duration: 0.8,
+  })
+  .to(".loader-txt-contain", {
+    marginTop: "-116vh",
+    duration: 0.5,
+  })
+  .to(".loader-txt-contain", {
+    marginTop: "-130vh",
+    duration: 0.5,
+  });
+
+var MOOUSE = document.querySelector("#loader");
+MOOUSE.addEventListener("mousemove", function (details) {
+  gsap.to("#MouseCurosr", {
+    ease: Power1,
+    top: details.clientY,
+    left: details.clientX,
+    xPercent: -50,
+    yPercent: -8,
+  });
 });
