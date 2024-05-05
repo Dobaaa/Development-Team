@@ -198,3 +198,13 @@ MOOUSE.addEventListener("mousemove", function (details) {
     rotate: gsap.utils.clamp(-80, 80, diff * 0.4),
   });
 });
+
+/* audio area */
+const audio = new Audio();
+audio.src = "/Audio/sound.mp3";
+
+const SoundBtn = document.querySelector("#sound");
+
+SoundBtn.addEventListener("click", () => {
+  audio.play();
+});
