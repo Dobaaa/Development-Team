@@ -76,9 +76,7 @@ function animate() {
 
   //Make the eye move
   if (object && objToRender === "eye") {
-    //I've played with the constants here until it looked good
-    object.rotation.y = -3 + (mouseX / window.innerWidth) * 3;
-    object.rotation.x = -1.2 + (mouseY * 2.5) / window.innerHeight;
+    object.rotation.y += 0.01;
   }
   renderer.render(scene, camera);
 }
@@ -136,7 +134,16 @@ Span.addEventListener("click", () => {
 
 //-- second section ------------------------
 
-var tll = gsap.timeline();
+gsap.registerPlugin(ScrollTrigger);
+
+var tll = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".loader-txt-contain",
+    start: "top center",
+    end: "+=1000", // Adjust the end value based on your content's height
+    scrub: 1, // Smoothly animates the timeline as you scroll
+  },
+});
 
 tll
   .to(".loader-txt-contain", {
@@ -177,12 +184,17 @@ tll
   });
 
 var MOOUSE = document.querySelector("#loader");
+var tilt = 0;
+var diff = 0;
 MOOUSE.addEventListener("mousemove", function (details) {
+  diff = details.clientX - tilt;
+  tilt = details.clientX;
   gsap.to("#MouseCurosr", {
     ease: Power1,
     top: details.clientY,
     left: details.clientX,
     xPercent: -50,
     yPercent: -8,
+    rotate: gsap.utils.clamp(-80, 80, diff * 0.4),
   });
 });
